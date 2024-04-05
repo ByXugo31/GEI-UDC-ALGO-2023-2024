@@ -1,10 +1,7 @@
-# GEI-UDC-ALGO-2023-2024
-Prácticas de la asignatura de algoritmos (2023-2024)
-
 # **FALLOS A TENER EN CUENTA:**
-## Práctica 1:
+**Práctica 1**:
 - Hay una variable i que se inicializa en un bucle for.
-## Práctica 2:
+### Práctica 2:
 - No hemos comparado el comportamiendo de cada algoritmo con cada uno de los 3 casos posibles.
 - No hemos comparado la complejidad obtenida con la teórica.
 - Las cotas están mal calculadas.
