@@ -1,0 +1,112 @@
+INFORME PRACTICA 3 ALGORITMOS
+ ---------------------------
+NOMBRE
+
+
+*****INTRODUCCION*****
+---------------------------
+En la tercera práctica de algoritmos desarrollamos y analizamos el algoritmo de ordenacion por monticulos de minimos,
+cuya función es ordenar un vector de numeros positivos y negativos. Analizamos 3 casos, ordenar un vector totalmente aleatorio, 
+ordenar un vector ya ordenado y ordenar un vector ordenado de forma decreciente.
+Tambien demostramos empíricamente que crear un montículo a partir de un vector cualquiera con n elementos (operación crearMonticulo) se ejecuta en un tiempo O(n).
+Después de implementar el algoritmo en lenguaje c este es pasados por test para verificar que funcionan correctamente y 
+posteriormente se realiza su análisis mediante el método empírico.
+
+
+*****MAQUINA UTILIZADA******
+----------------------------
+Nombre y Marca del dispositivo: HP Victus 16-d1010ns
+Procesador: 12th Gen Intel® Core™ i7-12700H × 20
+Nombre del SO: Ubuntu 22.04.3 LTS
+Tipo del SO: 64 bits
+Memoria RAM:16 GB
+Capacidad del disco:512,1 GB
+
+
+*****UNIDADES DE TIEMPO UTILIZADAS*****
+----------------------------------------
+Microsegundos(μs)
+
+
+*****ANÁLISIS DE RESULTADOS*****
+--------------------------------
+
+(*)=Tiempo medio de 1000 ejecuciones del algoritmo, debido a que el tiempo medido es menor a 500 microsegundos, es decir menor al umbral de confianza.
+(#)=Medida anómala detectada.
+
+1) DEMOSTRACION DE QUE CREARMONTICULO SE EJECUTA EN TIEMPO O(n)
+
+       n           t(n)          t(n)/n
+(*)  2000         24.616000      0.01230800
+(*)  4000         50.862000      0.01271550
+(*)  8000        101.945000      0.01274312
+(*) 16000        197.741000      0.01235881
+(*) 32000        391.835000      0.01224484
+
+Como se puede ver en la tabla, en la cual se estudia crearmonticulo sobre una secuencia aleatoria de numeros, 
+se cumple que la complejidad teorica O(n) y la empírica coinciden.
+
+
+2)ORDENACION DE UN VECTOR
+
+VECTOR ALEATORIO
+                                
+       n            t(n)         t(n)/n^ 0.90     t(n)/n^ 1.210 *log(n)     t(n)/n^ 1.4
+(*)  2000         189.90300         0.19608             0.14125               0.00438
+(*)  4000         399.87600         0.22415             0.14212               0.00354
+     8000         896.00000         0.27021             0.14975               0.00302
+    16000        1903.00000         0.31083             0.14967               0.00245
+    32000        4783.00000         0.35730             0.14871               0.00199
+                                
+ 				   n^0.9 es        n^1.210 es ajustada         n^1.4 es
+                                  subestimada         Cte = 0.14             sobrestimada                               
+                                                              
+
+VECTOR ORDENADO ASCENDENTEMENTE
+
+      n             t(n)         t(n)/n^ 0.90     t(n)/n^ 1.290 *log(n)     t(n)/n^ 1.4
+(*)  2000         115.17200         0.12315             0.04829               0.00275
+(*)  4000         241.73100         0.13851             0.04523               0.00219
+     8000         708.00000         0.21740          (#)0.05870               0.00243
+    16000        1241.00000         0.20420             0.04533               0.00161
+    32000        2699.00000         0.23800             0.04320               0.00133
+
+ 				   n^0.9 es        n^1.290 es ajustada         n^1.4 es
+                                  subestimada         Cte = 0.04             sobrestimada    
+                                  
+
+VECTOR ORDENADO DESCENDENTEMENTE
+
+      n              t(n)         t(n)/n^ 0.90     t(n)/n^ 1.363 *log(n)    t(n)/n^ 1.4
+(*)  2000          118.71500        0.12693              0.02858              0.00284
+(*)  4000          263.67500        0.15108              0.02693              0.00239
+     8000          678.00000        0.20818              0.02917              0.00233
+    16000         1449.00000        0.23843              0.02611              0.00188
+    32000         3008.00000        0.26524           (#)0.02258              0.00148
+
+				    n^0.9 es        n^1.363 es ajustada       n^1.4 es
+                                   subestimada         Cte = 0.02           sobrestimada
+
+
+DETECCION DE TABLA CON MEDIDAS ANÓMALAS: Hemos detectado que al ejecutar el programa la primera medida de
+los tiempos de ejecución de los algoritmos es bastante diferente en relación a las siguientes medidas,
+por lo que la hemos descartado. Esta primera medida anómala es bastante probable que se deba
+a la inicialización de variables y la asignación de recursos del sistema en esa primera llamada
+a la función que mide los tiempos y ejecuta el algoritmo. En nuestro código hemos filtrado en la impresión
+de las tablas este caso, por lo que al ejecutarlo, este no figura en ningún lado. 
+
+*****CONCLUSIONES*****
+----------------------------
+
+Tras realizar las mediciones y analizarlas sacamos como conclusion que aunque la complejidad teórica de heapshort sea n log n, 
+en la práctica no tiene porqué ser así, en este caso podemos observar que la n que multiplica al logarítmo la hemos tenido que elevar a un valor para poder sacar una cota ajustada. 
+Esto se debe a factores externos como: La distribución de los datos de entrada, la eficiencia del hardware o del sistema operativo, o aspectos específicos de la implementación del algoritmo.
+Entonces las complejidades del algoritmo serían:
+Vector ordenado aleatoriamente: (n^1.21)*log(n)
+Vector ordenado ascendentemente: (n^1.29)*log(n)
+Vector ordenado descendentemente: (n^1.363)*log(n)
+
+Comparando los 3 casos entre ellos, se puede ver que claramente es mucho más rápido ordenar un vector que está ya ordenado ascendentemente que los otros 2 casos,
+de los cuales es más rápido ordenar un vector ordenado descendentemente que uno aleatorio, quedando este como el caso en el que más tarda. 
+
+

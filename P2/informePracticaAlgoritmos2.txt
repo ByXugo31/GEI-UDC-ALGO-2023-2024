@@ -1,0 +1,162 @@
+      INFORME PRACTICA 2 ALGORITMOS
+---------------------------
+NOMBRE
+
+
+*****INTRODUCCION*****
+---------------------------
+En la segunda práctica de algoritmos desarrollamos y analizamos 2 algoritmos
+cuya función es ordenar un vector de numeros positivos y negativos. Analizamos 3 casos, ordenar un vector totalmente aleatorio, 
+ordenar un vector ya ordenado(el mejor caso) y ordenar un vector ordenado de forma decreciente(el peor caso).  
+Después de implementar los algoritmos en lenguaje c estos son pasados por 2 test
+para verificar que funcionan correctamente y posteriormente se realiza su análisis mediante
+el método empírico.
+
+
+*****MAQUINA UTILIZADA******
+----------------------------
+Nombre y Marca del dispositivo: HP Victus 16-d1010ns
+Procesador: 12th Gen Intel® Core™ i7-12700H × 20
+Nombre del SO: Ubuntu 22.04.3 LTS
+Tipo del SO: 64 bits
+Memoria RAM:16 GB
+Capacidad del disco:512,1 GB
+
+
+*****UNIDADES DE TIEMPO UTILIZADAS*****
+----------------------------------------
+Microsegundos(μs)
+
+*****ANÁLISIS DE RESULTADOS*****
+--------------------------------
+
+ORDENACIÓN POR INSERCCIÓN(Algoritmo 1)
+Caso 1: Vector ordenado ascendentemente
+
+       n           t(n)        t(n)/n^0.70     t(n)/n^1.02     t(n)/n^1.20
+(*)   500        0.695000        0.008968        0.001228        0.000401
+(*)  1000        1.306000        0.010374        0.001137        0.000328
+(*)  2000        3.024000        0.014786        0.001299        0.000331
+(*)  4000        5.560000        0.016735        0.001178        0.000265
+(*)  8000       11.744000        0.021760        0.001226        0.000243
+(*) 16000       22.775000        0.025976        0.001173        0.000205
+(*) 32000       45.070000        0.031643        0.001145        0.000177
+
+                                 n^0.70 es  n^1.02 es ajustada   n^1.20 es
+                                subestimada   Cte = 0.00119     sobrestimada
+
+Caso 2: Vector ordenado descendentemente
+
+       n           t(n)        t(n)/n^1.80     t(n)/n^2.00     t(n)/n^2.20
+(*)   500      120.761000        0.001674        0.000483        0.000139
+(*)  1000      469.809000        0.001870        0.000470        0.000118
+     2000     1758.000000        0.002010        0.000440        0.000096
+     4000     6887.000000        0.002261        0.000430        0.000082
+     8000    31683.000000        0.002987        0.000495        0.000082
+    16000   114411.000000        0.003098        0.000447        0.000064
+    32000   477480.000000        0.003713        0.000466        0.000059
+
+                                 n^1.80 es  n^2.00 es ajustada   n^2.20 es
+                                subestimada   Cte = 0.00046     sobrestimada
+
+Caso 3: Vector aleatorio
+
+       n           t(n)        t(n)/n^1.80     t(n)/n^2.00     t(n)/n^2.20
+(*)   500       69.423000        0.000962        0.000278        0.000080
+(*)  1000      272.015000        0.001083        0.000272        0.000068
+     2000     1020.000000        0.001166        0.000255        0.000056
+     4000     3822.000000        0.001255        0.000239        0.000045
+     8000    17048.000000        0.001607        0.000266        0.000044
+    16000    63050.000000        0.001707        0.000246        0.000036
+    32000   237299.000000        0.001845        0.000232        0.000029
+    
+                                 n^1.80 es  n^2.00 es ajustada   n^2.20 es
+                                subestimada   Cte = 0.00025     sobrestimada
+    
+    
+ORDENACIÓN SHELL(Algoritmo 2)
+Caso 1: Vector ordenado ascendentemente
+
+       n           t(n)        t(n)/n^0.90     t(n)/n^1.15     t(n)/n^1.30
+(*)   500        6.624000        0.024663        0.005216        0.002053
+(*)  1000       16.965000        0.033850        0.006019        0.002136
+(*)  2000       36.446000        0.038969        0.005827        0.001863
+(*)  4000       81.064000        0.046449        0.005841        0.001683
+(*)  8000      170.928000        0.052485        0.005550        0.001441
+(*) 16000      363.049000        0.059739        0.005312        0.001243
+    32000      838.000000        0.073894        0.005525        0.001166
+    
+                                 n^0.90 es  n^1.15 es ajustada   n^1.30 es
+                                subestimada   Cte = 0.0056     sobrestimada
+
+Caso 2: Vector ordenado descendentemente
+
+       n           t(n)        t(n)/n^1.00     t(n)/n^1.11     t(n)/n^1.30
+(*)   500       11.068000        0.022136        0.011174        0.003431
+(*)  1000       24.524000        0.024524        0.011471        0.003087
+(*)  2000       52.660000        0.026330        0.011411        0.002692
+(*)  4000      112.086000        0.028022        0.011253        0.002327
+(*)  8000      251.049000        0.031381        0.011677        0.002117
+    16000      568.000000        0.035500        0.012240        0.001945
+    32000     1243.000000        0.038844        0.012410        0.001729
+
+                                 n^1.00 es  n^1.11 es ajustada   n^1.30 es
+                                subestimada   Cte = 0.0116    sobrestimada
+                                
+Caso 3: Vector aleatorio
+
+       n           t(n)        t(n)/n^1.00     t(n)/n^1.16     t(n)/n^1.30
+(*)   500       36.563000        0.073126        0.027054        0.011334
+(*)  1000       87.240000        0.087240        0.028888        0.010983
+(*)  2000      187.007000        0.093504        0.027712        0.009561
+(*)  4000      424.210000        0.106052        0.028131        0.008809
+     8000      967.000000        0.120875        0.028697        0.008155
+    16000     2175.000000        0.135937        0.028886        0.007449
+    32000     4961.000000        0.155031        0.029485        0.006900
+    
+                                 n^1.00 es  n^1.16 es ajustada   n^1.30 es
+                                subestimada     Cte = 0.028     sobrestimada
+
+
+*=Tiempo medio de 1000 ejecuciones del algoritmo, debido a que el tiempo medido es menor a 500 microsegundos, es decir menor al umbral de confianza.
+
+
+DETECCION DE MEDICIÓN ANOMALA: Hemos detectado que al ejecutar el programa la primera medida de
+los tiempos de ejecución de los algoritmos es bastante diferente en relación a las siguientes medidas,
+por lo que la hemos descartado. Esta primera medida anómala es bastante probable que se deba
+a la inicialización de variables y la asignación de recursos del sistema en esa primera llamada
+a la función que mide los tiempos y ejecuta el algoritmo.
+
+AQUI UN EJEMPLO DE LA PRIMERA MEDIDA LA CUAL ES DESCARTADA
+
+       n           t(n)        t(n)/n^0.70     t(n)/n^1.02     t(n)/n^1.20
+(*)   500        2.486000        0.032079        0.004391        0.001435
+(*)  1000        1.155000        0.009174        0.001006        0.000290
+(*)  2000        2.820000        0.013789        0.001211        0.000308
+(*)  4000        4.773000        0.014366        0.001011        0.000227
+(*)  8000       11.955000        0.022151        0.001249        0.000248
+(*) 16000       28.403000        0.032395        0.001463        0.000256
+(*) 32000       47.644000        0.033451        0.001210        0.000187
+
+En esta tabla cuando n = 500, se puede ver que el tiempo medido es superior a n = 1000 en esta tabla y superior al
+n = 500 de las demás tablas.
+
+*****CONCLUSIONES*****
+----------------------------
+
+Tras realizar las mediciones, sacamos como conclusión que el algororitmo de ordenación por shell es más
+rápido que el algoritmo de ordenación por inserción en la mayoría de los casos menos en el mejor de todos los posibles
+(vector ordenado de forma ascendente), esto se debe a la complejidad lineal del algoritmo de inserción frente a la complejidad
+del algoritmo de ordenación shell (n log(n)). En cuanto al resto de casos nos encontramos que la complejidad del algoritmo por inserción
+es cuadrática, siendo mucho más lenta frente a ordenación shell, cuya complejidad es n (log(n))^2.
+
+Algoritmo ordenación inserción mejor caso--->t(n) = O(n)
+Algoritmo ordenación inserción resto de casos--->t(n) = O(n^2)
+Algoritmo ordenación shell mejor caso--->t(n) = O(n log(n))
+Algoritmo ordenación shell resto de casos--->t(n) = O(n (log(n))^2)
+
+En cuanto a las cotas del primer algoritmo en todos sus casos, tienen los comportamientos esperados,
+es decir la subestimada crece de forma constante, la cota sobrestimada decrece de forma constante,
+y la cota ajustada se mantiene durante todo el proceso de mediciones.
+En el segundo algoritmo el comportamiento de las cotas es similar al del primer algoritmo,
+tal y como se esperaba.

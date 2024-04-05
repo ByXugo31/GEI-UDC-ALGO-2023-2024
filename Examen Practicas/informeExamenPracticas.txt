@@ -1,0 +1,91 @@
+      INFORME EXAMEN PRÁCTICAS ALGORITMOS
+---------------------------
+NAME
+
+
+*****INTRODUCCION*****
+---------------------------
+En este examen vamos a estudiar el comportamiento de un algoritmo de ordenación
+dado en 3 vectores diferentes, uno ordenado de forma ascendente, otro de forma
+descendente y uno de forma aleatoria y vamos a compararlo con los algoritmos
+de shell e inserción estudiados en la practica 2.
+
+
+*****MAQUINA UTILIZADA******
+----------------------------
+Nombre y Marca del dispositivo: Lenovo Legion 5 15ACH6H
+Procesador: AMD Ryzen 7 5800h
+Nombre del SO: Manjaro Linux
+Tipo del SO: 64 bits
+Memoria RAM:16 GB
+Capacidad del disco:512,1 GB
+
+
+*****UNIDADES DE TIEMPO UTILIZADAS*****
+----------------------------------------
+Microsegundos(μs)
+
+*****ANÁLISIS DE RESULTADOS*****
+--------------------------------
+
+(*) = Tiempo medio de 1000 ejecuciones del algoritmo, debido a que el tiempo medido es menor a 500 microsegundos, es decir menor al umbral de confianza.
+(#) = Medición anómala
+
+Caso 1: Vector ordenado de forma ascendente
+
+       n           t(n)    t(n)/n ^ 1.60 * log(n)    t(n)/n ^ 1.86 * log(n)    t(n)/n ^ 2.0 * log(n)
+(*)   500       57.602000         0.0004453                 0.0000885                 0.0000371
+(*)  1000      217.872000         0.0004999                 0.0000830                 0.0000315
+     2000      872.000000         0.0005998                 0.0000831                 0.0000287
+     4000     3376.000000         0.0007020                 0.0000812                 0.0000254
+     8000    13515.000000         0.0008556                 0.0000827                 0.0000235
+    16000    53813.000000         0.0010433                 0.0000842                 0.0000217
+    32000   214076.000000         0.0012776                 0.0000861                 0.0000202
+
+			       Cota Subestimada           Cota Ajustada           Cota Sobreestimada
+                                                          Cte = 0.00008           
+
+Caso 2: Vector ordenado de forma descendente
+
+       n           t(n)    t(n)/n ^ 1.60 * log(n)    t(n)/n ^ 1.86 * log(n)    t(n)/n ^ 2.0 * log(n)
+(*)   500      101.770000         0.0007868                 0.0001564                 0.0000655	(#)
+(*)  1000      388.546000         0.0008915                 0.0001479                 0.0000562
+     2000     1508.000000         0.0010373                 0.0001438                 0.0000496
+     4000     5967.000000         0.0012408                 0.0001436                 0.0000450
+     8000    23851.000000         0.0015099                 0.0001459                 0.0000415
+    16000    95703.000000         0.0018554                 0.0001498                 0.0000386
+    32000   380222.000000         0.0022692                 0.0001529                 0.0000358 (#)
+
+			       Cota Subestimada           Cota Ajustada           Cota Sobreestimada
+                                                          Cte = 0.00014           
+
+Caso 3: Vector aleatorio
+
+       n           t(n)    t(n)/n ^ 0.50 * log(n)    t(n)/n ^ 0.97 * log(n)    t(n)/n ^ 1.5 * log(n)
+(*)   500       26.104000         0.1878488                 0.0101226                 0.0003757
+(*)  1000       56.456000         0.2584480                 0.0100548                 0.0002584
+(*)  2000      121.221000         0.3566134                 0.0100164                 0.0001783
+(*)  4000      258.797000         0.4933585                 0.0100045                 0.0001233
+     8000      564.000000         0.7016328                 0.0102721                 0.0000877
+    16000     1220.000000         0.9963434                 0.0105311                 0.0000623
+    32000     2534.000000         1.3655471                 0.0104204                 0.0000427
+
+			       Cota Subestimada           Cota Ajustada           Cota Sobreestimada
+                                                          Cte = 0.010           
+
+*****CONCLUSIONES*****
+----------------------------
+
+El algoritmo proporcionado se trata del algoritmo de quicksort, cuya complejidad es de n log n y de n^2 en su peor caso (vectores ya ordenados)
+aunque en las tablas podemos comprobar que para todos los casos la empírica es mejor que su complejidad teórica para vectores aleatorios siendo de O(n^0.97 * log n)
+y en ascendentes y descendentes O(n^1.86 * log n) que resulta ser un poco peor que n^2.
+
+En cuanto al comportamiento en los distintos casos se puede ver que para vectores aleatorios, va a ser más eficiente, siendo casi 4 veces
+más eficiente que con vectores descendentes y 2 veces más eficientes que para vectores ascendentes. En cuanto a los vectores descendentes, sus tiempos son los
+peores ya que el vector sigue una relación de orden inversa a la pedida. Por último en caso de vectores
+ascendentes, nos encontramos con un vector ya ordenado por lo que los tiempos serán mayores que para vectores aleatorios, pero mejores que para vectores descendentes.
+
+En comparación de los algoritmos de shell e inserción de la práctica 2, nos encontramos con que este algoritmo es el más rápido en vectores aleatorios, pero en los demás casos
+no resulta ser así, siendo superado por shell en vectores descendentes y por inserción en vectores ascendentes, esto debido a sus complejidades, siendo la complejidad de shell de O(n log n) en vectores
+descendentes y la de inserción simplemente de O(n) para vectores ascendentes.
+

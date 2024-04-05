@@ -1,0 +1,105 @@
+INFORME PRACTICA 1 ALGORITMOS
+---------------------------
+NOMBRE
+
+
+*****INTRODUCCION*****
+---------------------------
+En la primera práctica de algoritmos desarrollamos y analizamos 2 algoritmos
+cuya función es conseguir la suma de la subsecuencia máxima dado un vector de n elementos,
+los cuales si son todos negativos, sacamos como suma máxima 0.
+Después de implementar los algoritmos en lenguaje c estos son pasados por 2 test
+para verificar que funcionan correctamente y posteriormente se realiza su análisis mediante
+el método empírico.
+
+
+*****MAQUINA UTILIZADA******
+----------------------------
+Nombre y Marca del dispositivo: HP Victus 16-d1010ns
+Procesador: 12th Gen Intel® Core™ i7-12700H × 20
+Nombre del SO: Ubuntu 22.04.3 LTS
+Tipo del SO: 64 bits
+Memoria RAM:16 GB
+Capacidad del disco:512,1 GB
+
+
+*****UNIDADES DE TIEMPO UTILIZADAS*****
+----------------------------------------
+Microsegundos(μs)
+
+*****ANÁLISIS DE RESULTADOS*****
+--------------------------------
+
+SUMASUBMAX 1(Algoritmo 1)
+
+       n           t(n)         t(n)/n^1.8         t(n)/n^2       t(n)/n^2.2
+(*)   500      159.343000 #      0.002209          0.000637        0.000184
+     1000      688.000000        0.002739          0.000688        0.000173
+     2000     2619.000000        0.002994          0.000655        0.000143
+     4000    10327.000000        0.003391          0.000645        0.000123
+     8000    44211.000000        0.004168          0.000691        0.000114
+    16000   167424.000000        0.004533          0.000654        0.000094
+    32000   677704.000000        0.005270          0.000662        0.000083
+    
+                                 n^1.8 es       n^2 es ajustada    n^2.2 es
+                                subestimada     Cte = 0.00066      sobrestimada
+    
+    
+
+SUMASUBMAX 2(Algoritmo 2)
+       n           t(n)         t(n)/n^0.8         t(n)/n       t(n)/n^1.2
+(*)   500        0.733000 #      0.005081          0.001466        0.000423
+(*)  1000        1.442000 #      0.005741          0.001442        0.000362
+(*)  2000        2.879000 #      0.006583          0.001440        0.000315
+(*)  4000        5.643000 #      0.007411          0.001411        0.000269
+(*)  8000       11.506000 #      0.008679          0.001438        0.000238
+(*) 16000       23.821000 #      0.010320          0.001489        0.000215
+(*) 32000       48.009000 #      0.011945          0.001500        0.000188
+
+
+                                 n^0.8 es       n es ajustada    n^1.2 es
+                                subestimada     Cte = 0.0014      sobrestimada
+
+*=Tiempo medio de 1000 ejecuciones del algoritmo.
+#=El tiempo medido es menor de 500 microsegundos, es decir menor al umbral de confianza.
+Por lo tanto se usa una medición para tiempos pequeños.
+
+DETECCION DE MEDICIÓN ANOMALA: Hemos detectado que al ejecutar el programa la primera medida de
+los tiempos de ejecución de los algoritmos es bastante diferente en relación a las siguientes medidas,
+por lo que la hemos descartado. Esta primera medida anómala es bastante probable que se deba
+a la inicialización de variables y la asignación de recursos del sistema en esa primera llamada
+a la función que mide los tiempos y ejecuta el algoritmo.
+
+AQUI UN EJEMPLO DE LA PRIMERA MEDIDA LA CUAL ES DESCARTADA
+
+       n         t(n)           t(n)/n^1.8       t(n)/n^2       t(n)/n^2.2
+      500      717.000000        0.009940        0.002868        0.000828
+     1000     2165.000000        0.008619        0.002165        0.000544
+     2000     7931.000000        0.009067        0.001983        0.000434
+     4000    11223.000000        0.003685        0.000701        0.000134
+     8000    41789.000000        0.003940        0.000653        0.000108
+    16000   168345.000000        0.004558        0.000658        0.000095
+    32000   678813.000000        0.005278        0.000663        0.000083
+
+*****CONCLUSIONES*****
+----------------------------
+
+Tras realizar las mediciones, sacamos como conclusión que el algororitmo sumaSubMax2 es mucho más
+rápido que el algoritmo sumaSubMax1, esto se debe a la complejidad a la que pertenece t(n) de cada
+algoritmo, mientras que t(n) de sumaSubMax1 tiene complejidad cuadrática, expresada por O(n^2)
+(debido a los 2 bucles anidados que utiliza), t(n) de sumaSubMax2 tiene complejidad lineal,
+expresada por O(n) (solo utiliza un bucle), por lo que lo hace más rápido y eficiente.
+
+Algoritmo sumaSubMax1--->t(n) = O(n2)
+Algoritmo sumaSubMax2--->t(n) = O(n)
+
+También hemos observado que en múltiples ejecuciones de la misma n,
+los tiempos entre cada ejecución de cada algoritmo, no variaban mucho entre si,
+manteniendose próximos a un valor. Esto se debe a que los algoritmos son algoritmos eficientes
+lo que hace que los tiempos se mantengan cercanos a una constante.
+
+En cuanto a las cotas del primer algoritmo, podemos ver que son las esperadas,
+es decir la subestimada crece de forma constante, la cota sobrestimada decrece de forma constante,
+y la cota ajustada se mantiene durante todo el proceso de mediciones.
+En el segundo algoritmo el comportamiento de las cotas es similar al del primer algoritmo,
+tal y como se esperaba.

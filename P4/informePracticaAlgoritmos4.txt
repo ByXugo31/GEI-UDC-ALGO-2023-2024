@@ -1,0 +1,63 @@
+INFORME PRACTICA 4 ALGORITMOS
+ ---------------------------
+NOMBRE
+
+
+*****INTRODUCCION*****
+---------------------------
+En la cuarta práctica de algoritmos desarrollamos y analizamos el algoritmo de dijkstra,
+cuya función es obtener la tabla de distancias minimas de un grafo a partir de su matriz de adyacencia generada aleatoriamente.
+Después de implementar el algoritmo en lenguaje c este es pasados por test para verificar que funcionan correctamente y 
+posteriormente se realiza su análisis mediante el método empírico.
+
+
+*****MAQUINA UTILIZADA******
+----------------------------
+Nombre y Marca del dispositivo: HP Victus 16-d1010ns
+Procesador: 12th Gen Intel® Core™ i7-12700H × 20
+Nombre del SO: Ubuntu 22.04.3 LTS
+Tipo del SO: 64 bits
+Memoria RAM:16 GB
+Capacidad del disco:512,1 GB
+
+
+*****UNIDADES DE TIEMPO UTILIZADAS*****
+----------------------------------------
+Microsegundos(μs)
+
+
+*****ANÁLISIS DE RESULTADOS*****
+--------------------------------
+
+(*)=Tiempo medio de 1000 ejecuciones del algoritmo, debido a que el tiempo medido es menor a 500 microsegundos, es decir menor al umbral de confianza.
+
+
+TABLA DE RESULTADOS
+                                
+    |     n |              t(n) |     t(n)/n^2.60 |         t(n)/n^2.74 |           t(n)/n^2.90 |
+(*) |    16 |          36.78200 |         0.02722 |             0.01846 |               0.01185 |
+(*) |    32 |         251.51000 |         0.03070 |             0.01890 |               0.01085 |
+    |    64 |        1663.00000 |         0.03348 |             0.01871 |               0.00962 |
+    |   128 |       10934.00000 |         0.03631 |             0.01841 |               0.00847 |
+    |   256 |       74036.00000 |         0.04055 |             0.01866 |               0.00768 |
+    |   512 |      503380.00000 |         0.04548 |             0.01899 |               0.00700 |
+    |  1024 |     3547575.00000 |         0.05286 |             0.02003 |               0.00661 |
+
+ 				         n^2.6 es           n^2.74 es ajustada          n^2.9 es
+                                        subestimada             Cte = 0.018            sobrestimada                               
+                                                              
+
+DETECCION DE TABLA CON MEDIDAS ANÓMALAS: Hemos detectado que al ejecutar el programa la primera medida de
+los tiempos de ejecución de los algoritmos es bastante diferente en relación a las siguientes medidas,
+por lo que la hemos descartado. Esta primera medida anómala es bastante probable que se deba
+a la inicialización de variables y la asignación de recursos del sistema en esa primera llamada
+a la función que mide los tiempos y ejecuta el algoritmo.(Lo que se llama tabla 0 en el output del código)
+
+*****CONCLUSIONES*****
+----------------------------
+La complejidad computacional teórica de este algoritmo es de O(n^3), debido a la aplicación de Dijkstra (O(n^2)) a los N nodos del grafo. Dando como resultado O(n) * O(n^2) = O(n^3),
+esto contrasta ligeramente con la obtenida empiricamente, variando esta en 0.26 el exponente y dando como resultado O(n^2.74).
+También cabe destacar que la gestión de memoria del programa es un factor a tener en cuenta, ya que al alcanzar valores de n muy altos se producen valores superiores de t(n)/g(n) con
+respecto a anteriores valores de n más pequeños (se puede ver como para n = 1024 el valor de t(n)/n^2.74 es superior al resto) y seguramente creciendo a partir de ese valor debido a lo comentado
+anteriormente. 
+
